@@ -1,0 +1,18 @@
+﻿@using MyDigitalCv.ViewModels;
+@model DeletePostViewModel
+
+<h5>Are you sure you want to delete this post?</h5>
+<form method="post" asp-controller="Blog" asp-action="DeletePost" enctype="multipart/form-data">
+	<div class="row">
+		<div class="col-4">
+			<div class="card">
+				<div class="card-header">@Model.Title</div>
+				<div class="card-body">
+					<small>This post was created @Model.CreationDateTime.ToString("MM/dd/yyyy HH:mm")</small>
+					<img class="card-image w-75 mx-auto" src="@Model.ImageUrl" alt="Card image cap"></img>
+					<button type="submit" class="btn btn-outline-danger m-3">Confirm delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,35 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.leftPic {
+    float: left;
+    margin: 10px,10px,10px,5px;
+}
+
+.rigthPic {
+    float: left;
+    margin: 10px,5px,10px,10px;
+}
+
+.blogpost-link{
+    text-decoration:none;
+}
+.blogpost-link:hover{
+    text-decoration:underline;
+}

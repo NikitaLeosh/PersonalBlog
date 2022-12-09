@@ -1,0 +1,98 @@
+﻿@using MyDigitalCv.ViewModels;
+@model PostDetailsViewModel
+
+<div class="container">
+	<h1 class="my-4">
+		@Model.Title<br />
+		<small class="text-muted">Secondary text</small>
+	</h1>
+	<div class="row">
+		<div class="col-md-8">
+		</div>
+
+		<div>
+			<h3 class="my-3">@Model.Title</h3>
+			<p>
+				<img class="img-fluid p-5" src="@Model.ImageUrl" style="float: left;" alt="" />
+				@Model.Text
+			</p>
+			<h3 class="my-3">Location</h3>
+			<ul>
+				<li>First thingy</li>
+				<li>Second thingy</li>
+				<li>Third thingy</li>
+			</ul>
+		</div>
+	</div>
+	<h5>Comment section!</h5>
+	<div class="container p-3">
+		@foreach (var comment in Model.Comments)
+		{
+			<div class="row mt-1">
+				<div class="card col-6">
+					<div class="card-header">@comment.UserFirstName @comment.UserLastName commented:</div>
+					<div class="card-body">@comment.Text</div>
+					<div class="card-footer">
+						@DateOnly.FromDateTime(comment.CreationDateTime).ToString() at
+						@TimeOnly.FromDateTime(comment.CreationDateTime).ToString("HH:mm")
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+
+	@if (Model.Comments.Count() == 0 || Model.Comments == null)
+	{
+		<p>No comments here yet. Be the first one to leave the comment here.</p>
+	}
+	@if (User.Identity.IsAuthenticated)
+	{
+		<div class="container p-3">
+		<form method="post" asp-action="AddComment">
+			<div class="row">
+				<div class="card col-6 p-3" style="border-color:darkolivegreen">
+					<div class="card-header">
+						<input type="hidden" id="User" name="UserId" asp-for="UserId" />
+						<input type="hidden" id="Post" name="Id" asp-for="Id" />
+						<label asp-for="NewComment.Text">New comment</label>
+					</div>
+					<div class="card-body">
+						<input class="form-control w-100"  asp-for="NewComment.Text" type="text">
+						<span asp-validation-for="NewComment.Text"></span>
+					</div>
+					<div class="card-footer">
+						<button class="btn btn-primary dropdown-item mt-3" type="submit">Leave comment</button>
+					</div>
+				</div>
+			</div>
+		</form>
+		</div>
+		
+	}
+	else
+	{
+		<p class="text-center mt-5 text-danger">Login or register to leave comments.</p>
+	}
+
+	@*<h3 class="my-4">Related projects</h3>
+	<div class="row">
+
+	<div class="col-md-3 col-sm-6 mb-4">
+	<a href="#">
+	<img class="img-fluid" src="https://via.placeholder.com/500x300" alt="" />
+	</a>
+	</div>
+
+	<div class="col-md-3 col-sm-6 mb-4">
+	<a href="#">
+	<img class="img-fluid" src="https://via.placeholder.com/500x300" alt="" />
+	</a>
+	</div>
+
+	<div class="col-md-3 col-sm-6 mb-4">
+	<a href="#">
+	<img class="img-fluid" src="https://via.placeholder.com/500x300" alt="" />
+	</a>
+	</div>
+	</div>*@
+</div>

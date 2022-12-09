@@ -1,0 +1,55 @@
+﻿@using MyDigitalCv.ViewModels;
+@model EditUserViewModel
+
+<form asp-controller="Account" asp-action="EditProfile" enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
+    <input type="hidden" name="ProfilePictureUrl" asp-for="ProfilePictureUrl" />
+    <div class="form-group">
+        <label asp-for="FirstName">First name</label>
+        <input type="text" asp-for="FirstName" class="form-control">
+        <span asp-validation-for="FirstName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName">Last name</label>
+        <input type="text" asp-for="LastName" class="form-control">
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Nickname">Nickname</label>
+        <input type="text" asp-for="Nickname" class="form-control">
+        <span asp-validation-for="Nickname"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone">Telephone number</label>
+        <input type="text" asp-for="Phone" class="form-control">
+        <span asp-validation-for="Phone"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Company">Company</label>
+        <input type="text" asp-for="Company" class="form-control">
+        <span asp-validation-for="Company"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmailAddress">Email address</label>
+        <input type="text" asp-for="EmailAddress" class="form-control">
+        <span asp-validation-for="EmailAddress"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="UserName">User name</label>
+        <input type="text" asp-for="UserName" class="form-control">
+        <span asp-validation-for="UserName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProfilePicture">Profile picture</label>
+        <input type="file" asp-for="ProfilePicture" class="form-control">
+        <span asp-validation-for="ProfilePicture"></span>
+    </div>
+    <div class="btn-group m-3 float-start">
+        <button class="btn btn-outline-danger" type="submit">Apply changes</button>
+        <a class="btn btn-outline-secondary" asp-controller="User" asp-action="Detail">Back to profile</a>
+    </div>
+</form>
+<div class="btn-group m-3 float-end">
+    <a class="btn btn-outline-secondary" asp-controller="Account" asp-action="ChangeEmail">Change email</a>
+    <a class="btn btn-outline-primary" asp-controller="Account" asp-action="ChangePassword">Change password</a>
+</div>

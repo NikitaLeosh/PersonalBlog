@@ -1,0 +1,25 @@
+﻿@using MyDigitalCv.ViewModels;
+@model CreatePostViewModel;
+
+<form method="post" asp-action="CreatePost" enctype="multipart/form-data">
+    <div>
+        <input type="hidden" id="AppUser" name="AppUserId" asp-for="AppUserId"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Title">Title</label>
+        <input asp-for="Title" type="text" class="form-control" placeholder="Header">
+        <span asp-validation-for="Title"></span>
+        <small id="emailHelp" class="form-text text-muted">Try to make up something short and funny</small>
+    </div>
+    <div class="form-group">
+        <label asp-for="Text">Password</label>
+        <textarea asp-for="Text" type="text-area" class="form-control" style="height: 300px;" placeholder="Your post's main text'"></textarea>
+        <span asp-validation-for="Text"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Image">Image</label>
+        <input asp-for="Image" type="file" class="form-control">
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+</form>

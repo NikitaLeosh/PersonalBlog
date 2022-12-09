@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding;
+@using MyDigitalCv.ViewModels;
+@model ChangeEmailViewModel
+
+<form method="post" asp-controller="Account" asp-action="ChangeEmail">
+	<div class="card col-5 mx-auto">
+		<div class="card-header">Email change form</div>
+		<div class="card-body">
+			<div asp-validation-summary="All"></div>
+			<ul class="m-2" style="list-style-type:none">
+				<li>
+					<label asp-for="NewEmail">Old email</label>
+					<input type="email" class="form-control" readonly asp-for="OldEmail" placeholder="new email" />
+					<span asp-validation-for="NewEmail"></span>
+				</li>
+				<li>
+					<label asp-for="NewEmail">New email</label>
+					<input type="email" class="form-control" asp-for="NewEmail" placeholder="new email" />
+					<span asp-validation-for="NewEmail"></span>
+				</li>
+
+				<div class="btn-group m-3 float-start">
+					<button class="btn btn-outline-danger" type="submit">Apply changes</button>
+					<a class="btn btn-outline-secondary" asp-controller="User" asp-action="Detail">Back to profile</a>
+				</div>
+			</ul>
+		</div>
+</form>

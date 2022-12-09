@@ -1,0 +1,16 @@
+﻿@model AppUser
+
+<div class="container">
+	<h5>AppUser profile</h5>
+	<div class="row">
+		<img class="img-fluid col-3" src="@(Model.ProfilePictureUrl ?? MyDigitalCv.Data.Const.DefaultUserProfilePicture)" />
+		<ul>
+			<li class="text-black-50">@Model.FirstName "@(Model.Nickname ?? "")" @Model.LastName</li>
+			<li>Username: @Model.UserName</li>
+			<li>Email: @Model.Email</li>
+			<li>Phone number: @(Model.Phone ?? "no phone")</li>
+			<li>Company: @(Model.Company ?? "not assigned")</li>
+		</ul>
+	</div>
+	<a class="btn btn-outline-primary" asp-controller="Account" asp-action="EditProfile" asp-route-id="@Model.Id">Edit profile</a>
+</div>

@@ -1,0 +1,67 @@
+﻿@using MyDigitalCv.Data;
+@model IEnumerable<BlogPost>
+<header>
+
+</header>
+
+<main role="main">
+
+
+	<section class="jumbotron text-center">
+		<div class="container">
+			<h1 class="jumbotron-heading">My realy interesting blog</h1>
+			<p class="lead text-muted">I can be using this site to just show off new things I might will have learned in the future. For now please try to gain some pleasure looking at this piece of art.</p>
+			<p>
+				@if (User.IsInRole(UserRoles.Admin))
+				{
+					<a asp-controller="Blog" asp-action="CreatePost" class="btn btn-primary my-2">New post</a>
+				}
+				<a href="#" class="btn btn-secondary my-2">Secondary action</a>
+			</p>
+		</div>
+	</section>
+
+	<div class="album py-5 bg-light">
+		<div class="container">
+
+			<div class="row">
+				@foreach (var item in Model)
+				{
+					<div class="col-md-4">
+						<div class="card mb-4 box-shadow">
+							<a asp-action="PostDetails"  asp-route-id="@item.Id" class="text-decoration-none text-dark">
+							<img class="card-img-top" src="@item.ImageUrl" alt="Card image cap">
+							<div class="card-header">
+								<h5 class="text-decoration-none">@item.Title</h5>
+							</div>
+							</a>
+							<div class="card-body">
+								@if (item.Text.Length >= 30)
+								{
+									<h>@(item.Text.Substring(0, 30) + "...")</h>
+								}
+								else
+								{
+									<h>@item.Text</h>
+								}
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group">
+										<a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Blog" asp-action="PostDetails" asp-route-id="@item.Id">View</a>
+										@if (User.IsInRole(UserRoles.Admin))
+										{
+											<a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Blog" asp-action="EditPost" asp-route-id="@item.Id">Edit</a>
+											<a type="button" class="btn btn-sm btn-outline-danger" asp-controller="Blog" asp-action="DeletePost" asp-route-id="@item.Id">Delete</a>
+										}
+									</div>
+									<small class="text-muted">@item.CreationDateTime.ToString("MM/dd/yyyy HH:mm")</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+			</div>
+		</div>
+
+	</div>
+</main>
